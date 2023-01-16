@@ -1,2 +1,2 @@
 # Recipe-App
-Recipe app is platform where customers can view a variety of modern food recipes and they can buy the food recipe in which they are interested.
+Customers can explore a range of contemporary culinary recipes on a platform called a recipe app, and they can purchase the recipes they are interested in.
