@@ -2,7 +2,7 @@
 - Customers can explore a range of contemporary culinary recipes on a platform called a **recipe app** (placeholder title), and they can follow instructions for the recipes they are interested in making.
 
 
-# Group Members (Group 8)
+# Team (Group 8)
 - Akhilesh Reddy Gurrala - 1082172
 - Sumikendar - 1090415
 - Angel Rose Eldhose - 1110035
