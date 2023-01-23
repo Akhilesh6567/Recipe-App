@@ -28,6 +28,4 @@
 - Data can be stored locally.
 
 # Out of Scope
-- There are no limit to number of users.
-- App is in english, thus it will only be usable by english speaking users. 
 - Data will be limited by the content available in the APIs used. Some features may be affected by API structure.
