@@ -1,5 +1,5 @@
 # Recipe App
-- Customers can explore a range of contemporary culinary recipes on a platform called a **recipe app** (placeholder title), and they can follow instructions for the recipes they are interested in making.
+- Customers can explore a range of contemporary culinary recipes on a platform called a **recipe app** (placeholder title), and they can follow   instructions for the recipes they are interested in making .
 
 
 # Team (Group 8)
