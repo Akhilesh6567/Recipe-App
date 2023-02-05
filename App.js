@@ -3,8 +3,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {StyleSheet, Text, View } from 'react-native';
 import React, { useState,useEffect,useCallback } from 'react';
 import Register from './screens/Register';
+import Login from './screens/Login';
 import * as SplashScreen from 'expo-splash-screen';
-
+import UserState from './context/auth/UserState';
 import {
   useFonts,
   Poppins_100Thin,
@@ -78,7 +79,7 @@ export default function App() {
    
     <>
 
-
+        <UserState>
           <View style={styles.container}>
             <NavigationContainer
               onReady={onLayoutRootView}
@@ -96,6 +97,11 @@ export default function App() {
               }} 
             >
               
+              <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{headerShown: false,}}
+              />
               
               <Stack.Screen
                 name="Register"
@@ -112,7 +118,7 @@ export default function App() {
 
           </View>
 
-
+          </UserState>
 
     </>
   );
