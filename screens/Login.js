@@ -26,7 +26,7 @@ const Login = ({navigation}) => {
                     }
                 )
                 // go to profile page after login
-                // navigation.navigate("Profile")                
+                navigation.navigate("Profile")                
               }
 
             }

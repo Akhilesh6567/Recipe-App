@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {StyleSheet, Text, View } from 'react-native';
 import React, { useState,useEffect,useCallback } from 'react';
 import Register from './screens/Register';
+import Profile from './screens/Profile';
 import Login from './screens/Login';
 import * as SplashScreen from 'expo-splash-screen';
 import UserState from './context/auth/UserState';
@@ -96,7 +97,6 @@ export default function App() {
                 }    
               }} 
             >
-              
               <Stack.Screen
                 name="Login"
                 component={Login}
@@ -108,6 +108,14 @@ export default function App() {
                 component={Register}
                 options={{headerShown: false,}}
               />
+                <Stack.Screen
+                name="Profile"
+                component={Profile}
+                options={() => ({
+                  title: "Profile",
+                })} 
+              />
+ 
 
 
               </Stack.Navigator>
