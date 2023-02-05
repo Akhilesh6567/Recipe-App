@@ -25,8 +25,7 @@ const Profile = ({navigation}) => {
 
         <Pressable
           style={({ pressed }) => [styles.resetButton, pressed && { backgroundColor:'rgb(247, 124, 67)'}]}
-          // use this onPress to navigate to the change password screen
-          // onPress={() => {navigation.navigate('ChangePassword')}}
+          onPress={() => {navigation.navigate('ChangePassword')}}
           TouchableHighlight
           >
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
