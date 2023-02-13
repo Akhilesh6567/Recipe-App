@@ -40,6 +40,7 @@ const AdminPanel = ({ navigation }) => {
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
 
           <View style={{ marginHorizontal: 10 }}>
+            {/* Turn this disabled to false and add input fields to add new dish */}
             <Pressable
               disabled={true}
               style={({ pressed }) => [styles.addDishBtn, pressed && { backgroundColor: 'rgb(247, 124, 67)' }]}
