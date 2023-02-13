@@ -1,13 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {StyleSheet, Text, View } from 'react-native';
-import React, { useState,useEffect,useCallback } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
 import Register from './screens/Register';
 import Profile from './screens/Profile';
 import ChangePassword from './screens/ChangePassword';
 import Login from './screens/Login';
 import * as SplashScreen from 'expo-splash-screen';
 import UserState from './context/auth/UserState';
+import AdminPanel from './screens/AdminPanel';
+import DishState from './context/dishes/DishState';
+
 import {
   useFonts,
   Poppins_100Thin,
@@ -72,58 +75,67 @@ export default function App() {
       await SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
-  
-  if(!fontsLoaded){
+
+  if (!fontsLoaded) {
     return null;
   }
 
   return (
-   
+
     <>
 
-        <UserState>
+      <UserState>
+        <DishState>
           <View style={styles.container}>
             <NavigationContainer
               onReady={onLayoutRootView}
-              >
-            <Stack.Navigator
-              screenOptions={{
-                headerStyle: { backgroundColor: 'rgb(247, 124, 67)' },
-                headerTintColor: 'white',
-                contentStyle: { backgroundColor: '#eee' },
-                headerTitleAlign: 'center',
-                headerTitleStyle:{
-                  fontWeight: 'bold',
-                  fontSize: 20,
-                }    
-              }} 
             >
-              <Stack.Screen
-                name="Login"
-                component={Login}
-                options={{headerShown: false,}}
-              />
-              
-              <Stack.Screen
-                name="Register"
-                component={Register}
-                options={{headerShown: false,}}
-              />
+              <Stack.Navigator
+                screenOptions={{
+                  headerStyle: { backgroundColor: 'rgb(247, 124, 67)' },
+                  headerTintColor: 'white',
+                  contentStyle: { backgroundColor: '#eee' },
+                  headerTitleAlign: 'center',
+                  headerTitleStyle: {
+                    fontWeight: 'bold',
+                    fontSize: 20,
+                  }
+                }}
+              >
                 <Stack.Screen
-                name="Profile"
-                component={Profile}
-                options={() => ({
-                  title: "Profile",
-                })} 
-              />
- 
-              <Stack.Screen
-                name="ChangePassword"
-                component={ChangePassword}
-                options={() => ({
-                  title: 'Change Password',
-                })}
-              />
+                  name="Login"
+                  component={Login}
+                  options={{ headerShown: false, }}
+                />
+
+                <Stack.Screen
+                  name="Register"
+                  component={Register}
+                  options={{ headerShown: false, }}
+                />
+                <Stack.Screen
+                  name="Profile"
+                  component={Profile}
+                  options={() => ({
+                    title: "Profile",
+                  })}
+                />
+
+
+                <Stack.Screen
+                  name="ChangePassword"
+                  component={ChangePassword}
+                  options={() => ({
+                    title: 'Change Password',
+                  })}
+                />
+                <Stack.Screen
+                  name="AdminPanel"
+                  component={AdminPanel}
+                  options={() => ({
+                    title: 'Admin Panel',
+                  })}
+                />
 
               </Stack.Navigator>
 
@@ -132,8 +144,8 @@ export default function App() {
 
 
           </View>
-
-          </UserState>
+        </DishState>
+      </UserState>
 
     </>
   );
