@@ -11,6 +11,8 @@ import UserState from './context/auth/UserState';
 import AdminPanel from './screens/AdminPanel';
 import DishState from './context/dishes/DishState';
 import AddDish from './screens/AddDish';
+import Container from 'toastify-react-native';
+
 import {
   useFonts,
   Poppins_100Thin,
@@ -87,6 +89,11 @@ export default function App() {
       <UserState>
         <DishState>
           <View style={styles.container}>
+            <Container position="top-center"
+              duration={1500}
+              style={{ width: '90%' }}
+
+            />
             <NavigationContainer
               onReady={onLayoutRootView}
             >
