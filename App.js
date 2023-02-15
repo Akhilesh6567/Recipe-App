@@ -10,7 +10,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import UserState from './context/auth/UserState';
 import AdminPanel from './screens/AdminPanel';
 import DishState from './context/dishes/DishState';
-
+import AddDish from './screens/AddDish';
 import {
   useFonts,
   Poppins_100Thin,
@@ -134,6 +134,13 @@ export default function App() {
                   component={AdminPanel}
                   options={() => ({
                     title: 'Admin Panel',
+                  })}
+                />
+                <Stack.Screen
+                  name="AddDish"
+                  component={AddDish}
+                  options={() => ({
+                    title: 'Add Dish',
                   })}
                 />
 

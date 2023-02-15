@@ -7,7 +7,7 @@ import DishContext from '../context/dishes/DishContext'
 import styles from './AdminPanelStyles'
 import { ScrollView } from 'react-native'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-
+import uuid from 'react-native-uuid'
 const AdminPanel = ({ navigation }) => {
 
   const { dishes, deleteDish } = useContext(DishContext);
@@ -40,9 +40,7 @@ const AdminPanel = ({ navigation }) => {
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
 
           <View style={{ marginHorizontal: 10 }}>
-            {/* Turn this disabled to false and add input fields to add new dish */}
             <Pressable
-              disabled={true}
               style={({ pressed }) => [styles.addDishBtn, pressed && { backgroundColor: 'rgb(247, 124, 67)' }]}
               onPress={() => { navigation.navigate('AddDish') }}
               TouchableHighlight
@@ -67,12 +65,11 @@ const AdminPanel = ({ navigation }) => {
             </View>
             <View style={styles.listBody}>
               {dishes.map((dish) => (
-                <View key={dish.id} style={styles.dishBodyRow} >
+                <View key={uuid.v4()} style={styles.dishBodyRow} >
                   <Text style={styles.dishBodyText}>{dish.name}</Text>
                   <Text style={styles.dishBodyText}>{dish.category}</Text>
 
                   <Pressable
-                    disabled={true}
                     onPress={() => handleDishDelete(dish.id)}
                   >
                     <FontAwesomeIcon
