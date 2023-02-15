@@ -1,7 +1,6 @@
 import DishContext from "./DishContext";
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
 const baseUrl = 'https://recipe-maker-34e87-default-rtdb.firebaseio.com'
 // Set data in dishes state from firebase
 async function gete() {
@@ -42,6 +41,7 @@ function DishState(props) {
   // Get dishes from firebase
   useEffect(() => {
     async function getRecipes() {
+
       const expense = await gete();
       setDishes(expense);
     }
@@ -50,15 +50,36 @@ function DishState(props) {
 
 
   // Add dish data to firebase
+  function addDish(name, category, image, video, time, ingredients, description) {
 
+    const dish = { name, category, image, video, time, ingredients, description }
+    try {
+
+      axios.post(`${baseUrl}/Momrecipes.json`, dish)
+      setDishes([...dishes, dish]);
+
+    } catch (error) {
+      alert(error)
+    }
+  }
+
+  // Delete dish from firebase
+  function deleteDish(id) {
+    try {
+      axios.delete(`${baseUrl}/Momrecipes/${id}.json`);
+      const newDishes = dishes.filter((dish) => dish.id !== id);
+      setDishes(newDishes);
+    } catch (error) {
+      alert(error)
+    }
+  }
 
   return (
 
-    <DishContext.Provider value={{ dishes, setDishes}}>
+    <DishContext.Provider value={{ dishes, setDishes, addDish, deleteDish }}>
       {props.children}
     </DishContext.Provider>
   )
 
 }
-
 export default DishState;

@@ -10,6 +10,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import UserState from './context/auth/UserState';
 import AdminPanel from './screens/AdminPanel';
 import DishState from './context/dishes/DishState';
+import AddDish from './screens/AddDish';
+import Container from 'toastify-react-native';
 
 import {
   useFonts,
@@ -87,6 +89,11 @@ export default function App() {
       <UserState>
         <DishState>
           <View style={styles.container}>
+            <Container position="top-center"
+              duration={1500}
+              style={{ width: '90%' }}
+
+            />
             <NavigationContainer
               onReady={onLayoutRootView}
             >
@@ -134,6 +141,13 @@ export default function App() {
                   component={AdminPanel}
                   options={() => ({
                     title: 'Admin Panel',
+                  })}
+                />
+                <Stack.Screen
+                  name="AddDish"
+                  component={AddDish}
+                  options={() => ({
+                    title: 'Add Dish',
                   })}
                 />
 
