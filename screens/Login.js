@@ -27,7 +27,7 @@ const Login = ({ navigation }) => {
                     )
                     // go to profile page after login
 
-                    isLoginSucces.email == "admin@gmail.com" ? navigation.navigate("AdminPanel") : navigation.navigate("Profile")
+                    isLoginSucces.email == "admin@gmail.com" ? navigation.navigate("AdminPanel") : navigation.navigate("Tabs")
                 }
 
             }
