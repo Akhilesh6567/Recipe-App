@@ -12,6 +12,7 @@ import AdminPanel from './screens/AdminPanel';
 import DishState from './context/dishes/DishState';
 import AddDish from './screens/AddDish';
 import Container from 'toastify-react-native';
+import Tabs from './navigation/tabs';
 
 import {
   useFonts,
@@ -128,6 +129,13 @@ export default function App() {
                   })}
                 />
 
+                
+              <Stack.Screen
+                name="Tabs"
+                component={Tabs} 
+                options={{headerShown: false,}}
+              />
+              
 
                 <Stack.Screen
                   name="ChangePassword"
