@@ -26,8 +26,16 @@ function Tabs() {
                     headerShown: false,
                     tabBarIcon: ({ focused }) => (
                         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-
-                            <Text style={{ color: focused ? 'rgb(247, 124, 67)' : '#748c94', fontSize: 16 }}>Home</Text>
+                            <Image
+                                source={require('../assets/icons/home.png')}
+                                resizeMode="contain"
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                    tintColor: focused ? 'rgb(247, 124, 67)' : '#748c94',
+                                }}
+                            />
+                            <Text style={{ color: focused ? 'rgb(247, 124, 67)' : '#748c94', fontSize: 12 }}>Home</Text>
                         </View>
                     )
                 }}
@@ -47,8 +55,16 @@ function Tabs() {
                     },
                     tabBarIcon: ({ focused }) => (
                         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-
-                            <Text style={{ color: focused ? 'rgb(247, 124, 67)' : '#748c94', fontSize: 16 }}>Favorite</Text>
+                            <Image
+                                source={require('../assets/icons/bookmark.png')}
+                                resizeMode="contain"
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                    tintColor: focused ? 'rgb(247, 124, 67)' : '#748c94',
+                                }}
+                            />
+                            <Text style={{ color: focused ? 'rgb(247, 124, 67)' : '#748c94', fontSize: 12 }}>Favorite</Text>
                         </View>
                     )
                 }}
@@ -67,8 +83,16 @@ function Tabs() {
                     headerTitleAlign: 'center',
                     tabBarIcon: ({ focused }) => (
                         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-
-                            <Text style={{ color: focused ? 'rgb(247, 124, 67)' : '#748c94', fontSize: 16 }}>Profile</Text>
+                            <Image
+                                source={require('../assets/icons/profile.png')}
+                                resizeMode="contain"
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                    tintColor: focused ? 'rgb(247, 124, 67)' : '#748c94',
+                                }}
+                            />
+                            <Text style={{ color: focused ? 'rgb(247, 124, 67)' : '#748c94', fontSize: 12 }}>Profile</Text>
                         </View>
                     )
                 }}
