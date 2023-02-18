@@ -9,7 +9,9 @@ const Tab = createBottomTabNavigator();
 function Tabs() {
     return (
         <Tab.Navigator
+
             screenOptions={{
+                keyboardHidesTabBar: true,
                 tabBarShowLabel: false,
                 tabBarStyle: {
                     position: 'absolute',

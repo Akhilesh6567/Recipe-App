@@ -7,6 +7,7 @@ function UserState(props) {
         username: "",
         email: "",
         id: "",
+        country:""
     });
     
 
