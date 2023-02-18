@@ -6,7 +6,7 @@ import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons/faRightFro
 import UserContext from '../context/auth/UserContext'
 import styles from './ProfileStyles'
 import CountryPicker from 'react-native-country-picker-modal'
-import { setCountry } from '../middlewares/setCOuntry'
+import { setCountry } from '../middlewares/setCountry'
 const Profile = ({ navigation }) => {
 
   const userContext = useContext(UserContext);
