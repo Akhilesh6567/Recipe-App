@@ -20,16 +20,38 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
 
+    
     description: {
         width: '100%',
         height: 'auto',
         display: 'flex',
         justifyContent: 'center',
-        backgroundColor: '#fff',
-        marginTop: 30,
-        marginBottom: 30,
-        padding: 20,
-        borderRadius: 0,
+        backgroundColor: '#f3f3f3',
+        marginTop: 15,
+        marginBottom: 20,
+        paddingVertical: 20,
+        paddingHorizontal: 25,
+        borderRadius: 15,
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        elevation: 3,
+    },
+    descHeading: {
+        fontFamily: 'Poppins_500Medium',
+        fontSize: 20, color: '#000',
+        lineHeight: 32,
+    },
+    descText: {
+        fontSize: 16,
+        color: '#000',
+        textAlign: 'justify',
+        fontFamily: 'Poppins_300Light',     
     },
 
     ingredientCards: {
