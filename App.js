@@ -11,6 +11,7 @@ import UserState from './context/auth/UserState';
 import AdminPanel from './screens/AdminPanel';
 import DishState from './context/dishes/DishState';
 import AddDish from './screens/AddDish';
+import RecipeDetail from './screens/RecipeDetail';
 import Container from 'toastify-react-native';
 import Tabs from './navigation/tabs';
 
@@ -134,6 +135,14 @@ export default function App() {
                 name="Tabs"
                 component={Tabs} 
                 options={{headerShown: false,}}
+              />
+
+              <Stack.Screen
+                name="DishRecipe"
+                component={RecipeDetail}
+                options={({route}) => ({
+                  title: route.params.dishName,
+                })}
               />
               
 
