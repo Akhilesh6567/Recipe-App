@@ -26,7 +26,7 @@ const RecipeCard = (props) =>{
             imageStyle={{borderRadius: 15,resizeMode: "cover",paddingHorizontal: 20,}}
         >
             <Pressable style={styles.favorite}
-            onPress={() => handleFavorite(props.dish)}
+            onPress={() =>{}}
 
             >
             <FontAwesomeIcon icon={faBookmark} style={styles.favoriteIcon} size={20}/>
