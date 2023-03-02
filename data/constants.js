@@ -1,0 +1,17 @@
+export const categories = [
+  "Breakfast",
+  "Vegetarian",
+  "Chinese",
+  "Cakes",
+  "Cookies",
+  "Desserts",
+  "Beverages",
+  "Seafood",
+  "BBQ",
+  "Meat",
+  "Pasta",
+  "Pies",
+  "Pizza",
+  "Salads",
+  "Sandwiches",
+];

@@ -1,19 +1,20 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState, useEffect, useCallback } from 'react';
-import Register from './screens/Register';
-import Profile from './screens/Profile';
-import ChangePassword from './screens/ChangePassword';
-import Login from './screens/Login';
-import * as SplashScreen from 'expo-splash-screen';
-import UserState from './context/auth/UserState';
-import AdminPanel from './screens/AdminPanel';
-import DishState from './context/dishes/DishState';
-import AddDish from './screens/AddDish';
-import RecipeDetail from './screens/RecipeDetail';
-import Container from 'toastify-react-native';
-import Tabs from './navigation/tabs';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StyleSheet, Text, View } from "react-native";
+import React, { useState, useEffect, useCallback } from "react";
+import Register from "./screens/Register";
+import Profile from "./screens/Profile";
+import ChangePassword from "./screens/ChangePassword";
+import Login from "./screens/Login";
+import * as SplashScreen from "expo-splash-screen";
+import UserState from "./context/auth/UserState";
+import AdminPanel from "./screens/AdminPanel";
+import DishState from "./context/dishes/DishState";
+import AddDish from "./screens/AddDish";
+import UpdateDish from "./screens/UpdateDish";
+import RecipeDetail from "./screens/RecipeDetail";
+import Container from "toastify-react-native";
+import Tabs from "./navigation/tabs";
 
 import {
   useFonts,
@@ -35,16 +36,13 @@ import {
   Poppins_800ExtraBold_Italic,
   Poppins_900Black,
   Poppins_900Black_Italic,
-} from '@expo-google-fonts/poppins';
-import AppLoading from 'expo-app-loading';
+} from "@expo-google-fonts/poppins";
+import AppLoading from "expo-app-loading";
 SplashScreen.preventAutoHideAsync();
 
 const Stack = createNativeStackNavigator();
 
-
 export default function App() {
-
-
   let [fontsLoaded] = useFonts({
     Poppins_100Thin,
     Poppins_100Thin_Italic,
@@ -66,7 +64,6 @@ export default function App() {
     Poppins_900Black_Italic,
   });
 
-
   useEffect(() => {
     async function prepare() {
       await SplashScreen.preventAutoHideAsync();
@@ -85,42 +82,38 @@ export default function App() {
   }
 
   return (
-
     <>
-
       <UserState>
         <DishState>
           <View style={styles.container}>
-            <Container position="top-center"
+            <Container
+              position="top"
               duration={1500}
-              style={{ width: '90%' }}
-
+              style={{ width: "100%" }}
             />
-            <NavigationContainer
-              onReady={onLayoutRootView}
-            >
+            <NavigationContainer onReady={onLayoutRootView}>
               <Stack.Navigator
                 screenOptions={{
-                  headerStyle: { backgroundColor: 'rgb(247, 124, 67)' },
-                  headerTintColor: 'white',
-                  contentStyle: { backgroundColor: '#eee' },
-                  headerTitleAlign: 'center',
+                  headerStyle: { backgroundColor: "rgb(247, 124, 67)" },
+                  headerTintColor: "white",
+                  contentStyle: { backgroundColor: "#eee" },
+                  headerTitleAlign: "center",
                   headerTitleStyle: {
-                    fontWeight: 'bold',
+                    fontWeight: "bold",
                     fontSize: 20,
-                  }
+                  },
                 }}
               >
                 <Stack.Screen
                   name="Login"
                   component={Login}
-                  options={{ headerShown: false, }}
+                  options={{ headerShown: false }}
                 />
 
                 <Stack.Screen
                   name="Register"
                   component={Register}
-                  options={{ headerShown: false, }}
+                  options={{ headerShown: false }}
                 />
                 <Stack.Screen
                   name="Profile"
@@ -130,54 +123,55 @@ export default function App() {
                   })}
                 />
 
-                
-              <Stack.Screen
-                name="Tabs"
-                component={Tabs} 
-                options={{headerShown: false,}}
-              />
+                <Stack.Screen
+                  name="Tabs"
+                  component={Tabs}
+                  options={{ headerShown: false }}
+                />
 
-              <Stack.Screen
-                name="DishRecipe"
-                component={RecipeDetail}
-                options={({route}) => ({
-                  title: route.params.dishName,
-                })}
-              />
-              
+                <Stack.Screen
+                  name="RecipeDetail"
+                  component={RecipeDetail}
+                  options={({ route }) => ({
+                    title: route.params.dishName,
+                  })}
+                />
 
                 <Stack.Screen
                   name="ChangePassword"
                   component={ChangePassword}
                   options={() => ({
-                    title: 'Change Password',
+                    title: "Change Password",
                   })}
                 />
                 <Stack.Screen
                   name="AdminPanel"
                   component={AdminPanel}
                   options={() => ({
-                    title: 'Admin Panel',
+                    title: "Admin Panel",
                   })}
                 />
                 <Stack.Screen
                   name="AddDish"
                   component={AddDish}
                   options={() => ({
-                    title: 'Add Dish',
+                    title: "Add Dish",
+                  })}
+                />
+
+                <Stack.Screen
+                  name="UpdateDish"
+                  component={UpdateDish}
+                  options={() => ({
+                    title: "Update Dish",
                   })}
                 />
 
               </Stack.Navigator>
-
-
             </NavigationContainer>
-
-
           </View>
         </DishState>
       </UserState>
-
     </>
   );
 }
@@ -185,6 +179,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'whitesmoke',
+    backgroundColor: "whitesmoke",
   },
 });
