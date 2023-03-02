@@ -25,7 +25,6 @@ async function gete() {
   } catch (error) {
     alert(error)
     return allRecpies;
-
   }
 }
 
@@ -34,8 +33,6 @@ function DishState(props) {
 
   // dishes state
   const [dishes, setDishes] = useState([]);
-
-
 
 
   // Get dishes from firebase
@@ -74,9 +71,34 @@ function DishState(props) {
     }
   }
 
+  // Update dish data in firebase
+  function updateDish(id, name, category, image, video, time, ingredients, description) {
+    const dishData = { name, category, image, video, time, ingredients, description }
+    try {
+      axios.put(`${baseUrl}/Momrecipes/${id}.json`, dishData);
+
+      const newDishes = dishes.map((dish) => {
+        if (dish.id === id) {
+          dish.name = name;
+          dish.category = category;
+          dish.image = image;
+          dish.video = video;
+          dish.time = time;
+          dish.ingredients = ingredients;
+          dish.description = description;
+        }
+        return dish;
+      });
+
+      setDishes(newDishes);
+    } catch (error) {
+      alert(error)
+    }
+  }
+
   return (
 
-    <DishContext.Provider value={{ dishes, setDishes, addDish, deleteDish }}>
+    <DishContext.Provider value={{ dishes, setDishes, addDish, deleteDish, updateDish }}>
       {props.children}
     </DishContext.Provider>
   )

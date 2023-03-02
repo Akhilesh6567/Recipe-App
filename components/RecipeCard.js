@@ -17,7 +17,7 @@ const RecipeCard = (props) =>{
 
     return (
       <View style={styles.card}
-        onTouchEnd={() => props.navigation.navigate('DishRecipe', {dishId:props.dish.id,dishName:props.dish.name, dishIngredients:props.dish.ingredients, dishTime:props.dish.time, dishImage:props.dish.image,
+        onTouchEnd={() => props.navigation.navigate('RecipeDetail', {dishId:props.dish.id,dishName:props.dish.name, dishIngredients:props.dish.ingredients, dishTime:props.dish.time, dishImage:props.dish.image,
         dishVideo:props.dish.video, dishDescription:props.dish.description})}
       >
         <ImageBackground 

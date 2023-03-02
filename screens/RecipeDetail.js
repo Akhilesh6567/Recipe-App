@@ -26,6 +26,16 @@ const RecipeDetail = (props) => {
     dishVideo,
   } = props.route.params;
 
+  const toTimeString = (time) => {
+
+    const date = new Date(time);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+    return `${hours}h ${minutes}m ${seconds}s`;
+  };
+
   return (
     <ScrollView>
       <View style={styles.videoContainer}>
@@ -46,7 +56,7 @@ const RecipeDetail = (props) => {
               padding: 10,
               borderRadius: 50,
             }}
-            onPress={() => {}}
+            onPress={() => { }}
           >
             <FontAwesomeIcon
               icon={faPlay}
@@ -66,7 +76,9 @@ const RecipeDetail = (props) => {
         <Text
           style={styles.heading}
         >{`Ingredients(${dishIngredients.length})`}</Text>
-        <Text style={styles.timeHeading}>{dishTime}</Text>
+        <Text style={styles.timeHeading}>
+          { dishTime ? toTimeString(dishTime) : "N/A" }
+        </Text>
       </View>
 
       <View style={styles.ingredientCards}>
@@ -99,7 +111,7 @@ const RecipeDetail = (props) => {
             justifyContent: "center",
             alignItems: "center",
           }}
-          onPress={() => {}}
+          onPress={() => { }}
         >
           <Text
             style={{
