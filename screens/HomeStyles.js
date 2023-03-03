@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
 
     dishesContainer: {
-        height: 600,
+        height: 500,
         marginVertical: 10,
     },
 
