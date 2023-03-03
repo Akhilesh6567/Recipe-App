@@ -26,10 +26,13 @@ const Recipes = (props) => {
   return (
     <ScrollView contentContainerStyle={styles.scrollableView}>
 
-      {props.dishes.map((dish, index) => {
-
-        return <RecipeCard key={dish.id} dish={dish} navigation={props.navigation} />
-
+      {props.dishes.map((dish) => {
+        if (props.tagValue === 'All' || props.tagValue === dish.category) {
+          return <RecipeCard key={dish.id} dish={dish} navigation={props.navigation} />
+        }
+        else if (props.searchValue !== '' && dish.name.toLowerCase().includes(props.searchValue.toLowerCase())) {
+          return <RecipeCard key={dish.id} dish={dish} navigation={props.navigation} />
+        }
       })}
 
     </ScrollView>
