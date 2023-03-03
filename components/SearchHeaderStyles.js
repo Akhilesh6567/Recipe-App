@@ -2,31 +2,26 @@ import { StyleSheet } from 'react-native';
 
 
 const styles = StyleSheet.create({
-    container: {
-        maxWidth: '100%',
-        marginHorizontal: 30,
-        marginTop: 20,
-    },
-    searchBox: {
-        height: 50,
-        width: '100%',
-        color: 'black',
+    searchSection: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '90%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
         backgroundColor: 'white',
         borderRadius: 8,
         fontSize: 16,
-        paddingTop: 14,
-        paddingBottom: 10,
-        paddingLeft: 20,
-        paddingRight: 20,
+        padding: 10,
+    },
+    searchBox: {
+        flex: 1,
+        marginLeft: 10,
+        fontSize: 16,
         fontFamily: 'Poppins_400Regular',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 1,
-            height: 2,
-        },
-        shadowOpacity: .5,
-        shadowRadius: 10,
-        elevation: 10,
+        marginTop: 3,
+        
     },
     contentContainer: {
         marginHorizontal: 30,

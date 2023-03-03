@@ -3,6 +3,8 @@ import { Text, TextInput, View, ScrollView, Pressable, Alert } from 'react-nativ
 import styles from './SearchHeaderStyles'
 import { categories } from "../data/constants";
 import uuid from "react-native-uuid";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
 
 const SearchHeader = (props) => {
 
@@ -12,8 +14,13 @@ const SearchHeader = (props) => {
 
     return (
         <View>
-
-            <View style={styles.container}>
+            <View style={styles.searchSection}>
+                <FontAwesomeIcon
+                    style={styles.searchIcon}
+                    icon={faSearch}
+                    size={20}
+                    color="#bbb"
+                />
                 <TextInput
                     style={styles.searchBox}
                     onChangeText={
@@ -22,7 +29,7 @@ const SearchHeader = (props) => {
                                 props.setIsLoading(true),
                                 props.setTagValue('')
                         }}
-                    placeholder="Search Recipe"
+                    placeholder='Search for a recipe'
                     placeholderTextColor="#bbb"
                     cursorColor={'#555'}
                 >
@@ -36,7 +43,6 @@ const SearchHeader = (props) => {
             >
 
                 <Pressable
-                    // className="tag"
                     style={activeTag('All') ? styles.activeTag : styles.tag}
                     onPress={() => { props.setTagValue('All'), props.setIsLoading(true) }}
                 >
