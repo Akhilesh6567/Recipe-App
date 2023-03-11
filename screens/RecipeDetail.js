@@ -38,7 +38,9 @@ const RecipeDetail = (props) => {
 
   return (
     <ScrollView>
-      <View style={styles.videoContainer}>
+      <View style={styles.videoContainer}
+        onTouchEnd={() => props.navigation.navigate("RecipeVideo", { recipeVideo: dishVideo })}
+      >
         <ImageBackground
           source={{ uri: dishImage }}
           style={styles.image}
@@ -56,7 +58,6 @@ const RecipeDetail = (props) => {
               padding: 10,
               borderRadius: 50,
             }}
-            onPress={() => { }}
           >
             <FontAwesomeIcon
               icon={faPlay}
@@ -77,7 +78,7 @@ const RecipeDetail = (props) => {
           style={styles.heading}
         >{`Ingredients(${dishIngredients.length})`}</Text>
         <Text style={styles.timeHeading}>
-          { dishTime ? toTimeString(dishTime) : "N/A" }
+          {dishTime ? toTimeString(dishTime) : "N/A"}
         </Text>
       </View>
 

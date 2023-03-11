@@ -1,1 +1,0 @@
-{"ast":null,"code":"export var initialWindowMetrics = null;\nexport var initialWindowSafeAreaInsets = null;","map":{"version":3,"names":["initialWindowMetrics","initialWindowSafeAreaInsets"],"sources":["../../src/InitialWindow.ts"],"sourcesContent":[null],"mappings":"AAEA,OAAO,IAAMA,oBAAoC,GAAG,IAAI;AAKxD,OAAO,IAAMC,2BAA8C,GAAG,IAAI"},"metadata":{},"sourceType":"module"}
