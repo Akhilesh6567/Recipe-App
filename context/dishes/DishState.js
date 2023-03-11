@@ -4,9 +4,9 @@ import axios from 'axios'
 const baseUrl = 'https://recipe-maker-34e87-default-rtdb.firebaseio.com'
 // Set data in dishes state from firebase
 async function gete() {
+  const allRecpies = []
   try {
     const res = await axios.get(`${baseUrl}/Momrecipes.json`)
-    const allRecpies = []
     for (const key in res.data) {
       const expensObj = {
         id: key,
@@ -17,7 +17,7 @@ async function gete() {
         ingredients: res.data[key].ingredients,
         time: res.data[key].time,
         category: res.data[key].category,
-
+        
       }
       allRecpies.push(expensObj)
     }

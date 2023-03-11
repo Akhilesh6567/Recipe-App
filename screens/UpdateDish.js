@@ -95,7 +95,6 @@ const UpdateDish = (props) => {
             name.trim() === "" ||
             image.trim() === "" ||
             video.trim() === "" ||
-            time.trim() === "" ||
             description.trim() === ""
         ) {
             Toast.warn("Please fill all the fields");

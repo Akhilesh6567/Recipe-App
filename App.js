@@ -13,6 +13,7 @@ import DishState from "./context/dishes/DishState";
 import AddDish from "./screens/AddDish";
 import UpdateDish from "./screens/UpdateDish";
 import RecipeDetail from "./screens/RecipeDetail";
+import RecipeVideo from "./screens/RecipeVideo";
 import Container from "toastify-react-native";
 import Tabs from "./navigation/tabs";
 
@@ -164,6 +165,14 @@ export default function App() {
                   component={UpdateDish}
                   options={() => ({
                     title: "Update Dish",
+                  })}
+                />
+
+                <Stack.Screen
+                  name="RecipeVideo"
+                  component={RecipeVideo}
+                  options={() => ({
+                    title: "Recipe Video",
                   })}
                 />
 
