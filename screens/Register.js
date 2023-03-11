@@ -1,39 +1,57 @@
-import React, { useState } from 'react'
-import { Alert, Image, Text, View, TextInput, TouchableOpacity } from 'react-native'
-import styles from './RegisterStyles'
-import { registerAuth } from '../middlewares/registerAuth'
+import React, { useState } from "react";
+import {
+  Alert,
+  Image,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
+import styles from "./RegisterStyles";
+import isAlphabetic from "../utils/isAlphabetic";
+import isEmail from "../utils/isEmail";
+import isPasswordValid from "../utils/isPasswordValid";
+import { registerAuth } from "../middlewares/registerAuth";
+import { Toast } from "toastify-react-native";
 const Register = ({ navigation }) => {
   const [registerCred, setRegisterCred] = useState({
     email: "",
     username: "",
-    password: ""
+    password: "",
   });
   const resetForm = () => {
     setRegisterCred({
       email: "",
       username: "",
-      password: ""
-    })
-  }
+      password: "",
+    });
+  };
   const { email, username, password } = registerCred;
   const register = async () => {
-    if (email == "" || username == "" || password == "") {
-      Alert.alert("Please Enter email, username and Password");
+    try {
+      if (email == "" || username == "" || password == "") {
+        Alert.alert("Please Enter email, username and Password");
+      } else if (!isAlphabetic(username)) {
+        Toast.warn("Username should be alphabetical");
+      } else if (!isEmail(email)) {
+        Toast.warn("Email is not valid");
+      } else if (!isPasswordValid(password)) {
+        Toast.warn("password should be alphanumeric");
+      } else {
+        const isRegisterSuccess = await registerAuth(registerCred);
+        // When register is successfull, navigate to login page
+        isRegisterSuccess ? navigation.navigate("Login") : null;
+        resetForm();
+      }
+    } catch (error) {
+      alert(error.message);
     }
-    else {
-      const isRegisterSuccess = await registerAuth(registerCred)
-      // When register is successfull, navigate to login page
-      isRegisterSuccess ? navigation.navigate("Login") : null;
-      resetForm()
-
-    }
-  }
+  };
 
   return (
     <View style={styles.container}>
-
       <View style={styles.headerView}>
-        <Image source={require('../assets/logo.png')} style={styles.logo} />
+        <Image source={require("../assets/logo.png")} style={styles.logo} />
         <Text style={styles.logoText}>Welcome to Recipeo</Text>
       </View>
 
@@ -45,7 +63,9 @@ const Register = ({ navigation }) => {
           placeholder="Username"
           placeholderTextColor="grey"
           value={username}
-          onChangeText={(username) => setRegisterCred({ ...registerCred, username: username })}
+          onChangeText={(username) =>
+            setRegisterCred({ ...registerCred, username: username })
+          }
         />
       </View>
 
@@ -55,10 +75,11 @@ const Register = ({ navigation }) => {
           placeholder="Email"
           placeholderTextColor="grey"
           value={email}
-          onChangeText={(email) => setRegisterCred({ ...registerCred, email: email })}
+          onChangeText={(email) =>
+            setRegisterCred({ ...registerCred, email: email })
+          }
         />
       </View>
-
 
       <View style={styles.inputView}>
         <TextInput
@@ -67,27 +88,31 @@ const Register = ({ navigation }) => {
           placeholderTextColor="grey"
           value={password}
           secureTextEntry={true}
-          onChangeText={(password) => setRegisterCred({ ...registerCred, password: password })}
+          onChangeText={(password) =>
+            setRegisterCred({ ...registerCred, password: password })
+          }
         />
       </View>
 
       <View style={styles.buttonView}>
-        <TouchableOpacity style={styles.registerBtn}
-          onPress={register}
-        >
+        <TouchableOpacity style={styles.registerBtn} onPress={register}>
           <Text style={styles.registerText}>Signup</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.login}>
         <Text style={styles.loginText}>Already have an account? </Text>
-        <TouchableOpacity onPress={() => { resetForm(); navigation.navigate("Login") }}>
+        <TouchableOpacity
+          onPress={() => {
+            resetForm();
+            navigation.navigate("Login");
+          }}
+        >
           <Text style={styles.loginBtnText}>Login</Text>
         </TouchableOpacity>
       </View>
+    </View>
+  );
+};
 
-    </View >
-  )
-}
-
-export default Register
+export default Register;
