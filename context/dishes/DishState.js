@@ -1,12 +1,12 @@
 import DishContext from "./DishContext";
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-const baseUrl = 'https://recipe-maker-34e87-default-rtdb.firebaseio.com'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+const baseUrl = "https://recipe-maker-34e87-default-rtdb.firebaseio.com";
 // Set data in dishes state from firebase
 async function gete() {
-  const allRecpies = []
+  const allRecpies = [];
   try {
-    const res = await axios.get(`${baseUrl}/Momrecipes.json`)
+    const res = await axios.get(`${baseUrl}/Momrecipes.json`);
     for (const key in res.data) {
       const expensObj = {
         id: key,
@@ -17,46 +17,57 @@ async function gete() {
         ingredients: res.data[key].ingredients,
         time: res.data[key].time,
         category: res.data[key].category,
-        
-      }
-      allRecpies.push(expensObj)
+        preparationSteps: res.data[key].preparationSteps,
+      };
+      allRecpies.push(expensObj);
     }
     return allRecpies;
   } catch (error) {
-    alert(error)
+    alert(error);
     return allRecpies;
   }
 }
 
-
 function DishState(props) {
-
   // dishes state
   const [dishes, setDishes] = useState([]);
-
 
   // Get dishes from firebase
   useEffect(() => {
     async function getRecipes() {
-
       const expense = await gete();
       setDishes(expense);
     }
-    getRecipes()
-  }, [])
-
+    getRecipes();
+  }, []);
 
   // Add dish data to firebase
-  function addDish(name, category, image, video, time, ingredients, description) {
-
-    const dish = { name, category, image, video, time, ingredients, description }
+  function addDish(
+    name,
+    category,
+    image,
+    video,
+    time,
+    ingredients,
+    description,
+    preparationSteps
+  ) {
+    const dish = {
+      name,
+      category,
+      image,
+      video,
+      time,
+      ingredients,
+      description,
+      preparationSteps,
+    };
     try {
-
-      axios.post(`${baseUrl}/Momrecipes.json`, dish)
+      // alert(JSON.stringify(dish));
+      axios.post(`${baseUrl}/Momrecipes.json`, dish);
       setDishes([...dishes, dish]);
-
     } catch (error) {
-      alert(error)
+      alert(error);
     }
   }
 
@@ -67,13 +78,32 @@ function DishState(props) {
       const newDishes = dishes.filter((dish) => dish.id !== id);
       setDishes(newDishes);
     } catch (error) {
-      alert(error)
+      alert(error);
     }
   }
 
   // Update dish data in firebase
-  function updateDish(id, name, category, image, video, time, ingredients, description) {
-    const dishData = { name, category, image, video, time, ingredients, description }
+  function updateDish(
+    id,
+    name,
+    category,
+    image,
+    video,
+    time,
+    ingredients,
+    description,
+    preparationSteps
+  ) {
+    const dishData = {
+      name,
+      category,
+      image,
+      video,
+      time,
+      ingredients,
+      description,
+      preparationSteps,
+    };
     try {
       axios.put(`${baseUrl}/Momrecipes/${id}.json`, dishData);
 
@@ -86,22 +116,23 @@ function DishState(props) {
           dish.time = time;
           dish.ingredients = ingredients;
           dish.description = description;
+          dish.preparationSteps = preparationSteps;
         }
         return dish;
       });
 
       setDishes(newDishes);
     } catch (error) {
-      alert(error)
+      alert(error);
     }
   }
 
   return (
-
-    <DishContext.Provider value={{ dishes, setDishes, addDish, deleteDish, updateDish }}>
+    <DishContext.Provider
+      value={{ dishes, setDishes, addDish, deleteDish, updateDish }}
+    >
       {props.children}
     </DishContext.Provider>
-  )
-
+  );
 }
 export default DishState;

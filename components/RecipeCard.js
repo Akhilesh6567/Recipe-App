@@ -2,22 +2,22 @@ import React, { useContext } from "react";
 import styles from "./RecipeCardStyles";
 import { ImageBackground, Text, View, Alert, Pressable } from "react-native";
 import DishContext from "../context/dishes/DishContext";
-import { LinearGradient } from "expo-linear-gradient";
+
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons/faBookmark";
 import formatTime from "../utils/formatTime";
 const RecipeCard = (props) => {
   const { addFavourite } = useContext(DishContext);
-
-  const handleFavorite = (dish) => {
-    addFavourite(dish);
-    Alert.alert("Added to Favorites");
-  };
   const date = new Date(props.dish.time);
   const hours = date.getHours();
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
   const recipieTime = formatTime(hours, minutes, seconds);
+  const handleFavorite = (dish) => {
+    addFavourite(dish);
+    Alert.alert("Added to Favorites");
+  };
+
   return (
     <View
       style={styles.card}
@@ -30,6 +30,7 @@ const RecipeCard = (props) => {
           dishImage: props.dish.image,
           dishVideo: props.dish.video,
           dishDescription: props.dish.description,
+          dishPreparationSteps: props.dish.preparationSteps,
         })
       }
     >
@@ -42,10 +43,6 @@ const RecipeCard = (props) => {
           paddingHorizontal: 20,
         }}
       >
-        <LinearGradient
-          colors={["rgba(0,0,0,0.2)", "rgba(0,0,0,0.3)"]}
-          style={styles.gradient}
-        />
         <Pressable style={styles.favorite} onPress={() => {}}>
           <FontAwesomeIcon
             icon={faBookmark}
