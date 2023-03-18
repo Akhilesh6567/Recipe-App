@@ -123,7 +123,78 @@ const styles = StyleSheet.create({
     },
     addBtn: {
         marginHorizontal: 20,
-    }
+    },
+
+    preparationView: {
+        padding: 10,
+        backgroundColor: "#fcfdfd",
+        borderRadius: 10,
+        marginBottom: 10,
+    },
+    preparationLabel: {
+        fontSize: 18,
+        color: "black",
+        fontFamily: "Poppins_400Regular",
+        textAlign: "center",
+    },
+    preparationField: {
+        height: 35,
+        margin: 12,
+        borderWidth: 1,
+        padding: 10,
+        borderColor: "#777",
+        width: "65%",
+        borderRadius: 8,
+        backgroundColor: "white",
+    },
+    addPreparationButton: {
+        backgroundColor: "rgb(247, 124, 67)",
+        padding: 8,
+        borderRadius: 5,
+        marginVertical: 10,
+        width: 150,
+        alignItems: "center",
+        marginRight: 10,
+    },
+    preparationText: {
+        color: "white",
+        fontSize: 16,
+        fontFamily: "Poppins_500Medium",
+        marginTop: 2,
+    },
+    preparationView: {
+        padding: 10,
+        backgroundColor: "#fcfdfd",
+        borderRadius: 10,
+        marginBottom: 10,
+    },
+    preparationLabel: {
+        fontSize: 18,
+        color: "black",
+        fontFamily: "Poppins_400Regular",
+        textAlign: "center",
+    },
+    preparationField: {
+        height: 35,
+        borderWidth: 1,
+        marginBottom: 10,
+        padding: 10,
+        borderColor: "#777",
+        width: "100%",
+        borderRadius: 8,
+        backgroundColor: "white",
+    },
+
+    addPreparationButton: {
+        backgroundColor: "rgb(247, 124, 67)",
+        padding: 8,
+        borderRadius: 5,
+        marginVertical: 10,
+        width: 150,
+        alignItems: "center",
+        marginRight: 10,
+    },
+
 });
 
 export default styles;

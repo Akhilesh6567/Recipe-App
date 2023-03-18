@@ -76,12 +76,12 @@ const AdminPanel = ({ navigation }) => {
               <View style={styles.listHead}>
                 <Text style={styles.listHeadText}>Name</Text>
                 <Text style={styles.listHeadText}>Category</Text>
-                <Text style={styles.dishHeadDeleteText}>Delete</Text>
+                <Text style={styles.dishHeadDeleteText}>Manage</Text>
               </View>
               <View style={styles.listBody}>
                 {dishes.map((dish) => (
                   <View key={uuid.v4()} style={styles.dishBodyRow}>
-                    <Text style={styles.dishBodyText}
+                    <Text style={styles.dishBodyNameText}
                       onPress={() => {
                         navigation.navigate("RecipeDetail", {
                           dishId: dish.id,
@@ -90,7 +90,8 @@ const AdminPanel = ({ navigation }) => {
                           dishTime: dish.time,
                           dishImage: dish.image,
                           dishVideo: dish.video,
-                          dishDescription: dish.description
+                          dishDescription: dish.description,
+                          dishPreparationSteps: dish.preparationSteps
                         });
                       }}
 

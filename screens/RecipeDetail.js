@@ -24,10 +24,10 @@ const RecipeDetail = (props) => {
     dishImage,
     dishDescription,
     dishVideo,
+    dishPreparationSteps,
   } = props.route.params;
 
   const toTimeString = (time) => {
-
     const date = new Date(time);
     const hours = date.getHours();
     const minutes = date.getMinutes();
@@ -38,8 +38,11 @@ const RecipeDetail = (props) => {
 
   return (
     <ScrollView>
-      <View style={styles.videoContainer}
-        onTouchEnd={() => props.navigation.navigate("RecipeVideo", { recipeVideo: dishVideo })}
+      <View
+        style={styles.videoContainer}
+        onTouchEnd={() =>
+          props.navigation.navigate("RecipeVideo", { recipeVideo: dishVideo })
+        }
       >
         <ImageBackground
           source={{ uri: dishImage }}
@@ -105,28 +108,23 @@ const RecipeDetail = (props) => {
         <Pressable
           style={{
             backgroundColor: "rgb(247, 124, 67)",
-            width: "60%",
-            padding: 18,
-            borderRadius: 50,
+            width: "66%",
+            padding: 16,
+            borderRadius: 12,
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
           }}
-          onPress={() => { }}
+          onPress={() => {
+            props.navigation.navigate("PreparationSteps", {
+              preparationSteps: dishPreparationSteps,
+            });
+          }}
         >
-          <Text
-            style={{
-              fontFamily: "Poppins_500Medium",
-              color: "whitesmoke",
-              fontSize: 16,
-              textAlign: "center",
-            }}
-          >
-            Start Cooking!
-          </Text>
+          <Text style={styles.prepStepsText}>Preparation Steps!</Text>
           <FontAwesomeIcon
             icon={faArrowRight}
-            style={{ color: "whitesmoke", marginLeft: 14 }}
+            style={{ color: "whitesmoke", marginLeft: 10 }}
             size={18}
           />
         </Pressable>

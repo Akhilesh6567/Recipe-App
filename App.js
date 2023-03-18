@@ -16,7 +16,7 @@ import RecipeDetail from "./screens/RecipeDetail";
 import RecipeVideo from "./screens/RecipeVideo";
 import Container from "toastify-react-native";
 import Tabs from "./navigation/tabs";
-
+import PreparationSteps from "./screens/PreparationSteps";
 import {
   useFonts,
   Poppins_100Thin,
@@ -131,14 +131,6 @@ export default function App() {
                 />
 
                 <Stack.Screen
-                  name="RecipeDetail"
-                  component={RecipeDetail}
-                  options={({ route }) => ({
-                    title: route.params.dishName,
-                  })}
-                />
-
-                <Stack.Screen
                   name="ChangePassword"
                   component={ChangePassword}
                   options={() => ({
@@ -150,6 +142,13 @@ export default function App() {
                   component={AdminPanel}
                   options={() => ({
                     title: "Admin Panel",
+                  })}
+                />
+                <Stack.Screen
+                  name="RecipeDetail"
+                  component={RecipeDetail}
+                  options={({ route }) => ({
+                    title: route.params.dishName,
                   })}
                 />
                 <Stack.Screen
@@ -173,6 +172,13 @@ export default function App() {
                   component={RecipeVideo}
                   options={() => ({
                     title: "Recipe Video",
+                  })}
+                />
+                <Stack.Screen
+                  name="PreparationSteps"
+                  component={PreparationSteps}
+                  options={() => ({
+                    title: "Preparation Steps",
                   })}
                 />
 

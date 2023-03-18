@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
 
-    
+
     description: {
         width: '100%',
         height: 'auto',
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#000',
         textAlign: 'justify',
-        fontFamily: 'Poppins_300Light',     
+        fontFamily: 'Poppins_300Light',
     },
 
     ingredientCards: {
@@ -85,6 +85,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+    },
+
+    prepStepsText: {
+        fontFamily: "Poppins_500Medium",
+        color: "whitesmoke",
+        fontSize: 17,
+        textAlign: "center",
     }
 
 });
