@@ -1,50 +1,71 @@
-import React,{useContext} from 'react'
-import styles from './RecipeCardStyles'
-import {ImageBackground, Text, View, Alert, Pressable } from 'react-native'
-import DishContext from '../context/dishes/DishContext'
+import React, { useContext } from "react";
+import styles from "./RecipeCardStyles";
+import { ImageBackground, Text, View, Alert, Pressable } from "react-native";
+import DishContext from "../context/dishes/DishContext";
+import { LinearGradient } from "expo-linear-gradient";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons/faBookmark";
+import formatTime from "../utils/formatTime";
+const RecipeCard = (props) => {
+  const { addFavourite } = useContext(DishContext);
 
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faBookmark } from '@fortawesome/free-solid-svg-icons/faBookmark'
-
-const RecipeCard = (props) =>{
-
-    const {addFavourite} = useContext(DishContext);  
-
-    const handleFavorite = (dish) => {
-        addFavourite(dish);
-        Alert.alert('Added to Favorites');
-    }
-
-    return (
-      <View style={styles.card}
-        onTouchEnd={() => props.navigation.navigate('RecipeDetail', {dishId:props.dish.id,dishName:props.dish.name, dishIngredients:props.dish.ingredients, dishTime:props.dish.time, dishImage:props.dish.image,
-        dishVideo:props.dish.video, dishDescription:props.dish.description})}
+  const handleFavorite = (dish) => {
+    addFavourite(dish);
+    Alert.alert("Added to Favorites");
+  };
+  const date = new Date(props.dish.time);
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  const recipieTime = formatTime(hours, minutes, seconds);
+  return (
+    <View
+      style={styles.card}
+      onTouchEnd={() =>
+        props.navigation.navigate("RecipeDetail", {
+          dishId: props.dish.id,
+          dishName: props.dish.name,
+          dishIngredients: props.dish.ingredients,
+          dishTime: props.dish.time,
+          dishImage: props.dish.image,
+          dishVideo: props.dish.video,
+          dishDescription: props.dish.description,
+        })
+      }
+    >
+      <ImageBackground
+        source={{ uri: props.dish.image }}
+        style={styles.image}
+        imageStyle={{
+          borderRadius: 15,
+          resizeMode: "cover",
+          paddingHorizontal: 20,
+        }}
       >
-        <ImageBackground 
-            source={{uri: props.dish.image}} 
-            style={styles.image} 
-            imageStyle={{borderRadius: 15,resizeMode: "cover",paddingHorizontal: 20,}}
-        >
-            <Pressable style={styles.favorite}
-            onPress={() =>{}}
+        <LinearGradient
+          colors={["rgba(0,0,0,0.2)", "rgba(0,0,0,0.3)"]}
+          style={styles.gradient}
+        />
+        <Pressable style={styles.favorite} onPress={() => {}}>
+          <FontAwesomeIcon
+            icon={faBookmark}
+            style={styles.favoriteIcon}
+            size={20}
+          />
+        </Pressable>
 
-            >
-            <FontAwesomeIcon icon={faBookmark} style={styles.favoriteIcon} size={20}/>
-            </Pressable>
-
-            <View style={styles.recipeDetails}>
-                <Text style={styles.recipeName}>{props.dish.name}</Text>
-                <View>
-                    <Text style={styles.recipeDesc}>{`${props.dish.ingredients.length} Ingredients | ${props.dish.time}`}</Text>
-                </View>
-
-            </View>
-
-        </ImageBackground>
-      </View>
-    )
-  
-}
-    
+        <View style={styles.recipeDetails}>
+          <Text style={styles.recipeName}>{props.dish.name}</Text>
+          <View>
+            <Text
+              style={styles.recipeDesc}
+            >{`${props.dish.ingredients.length} Ingredients `}</Text>
+            <Text style={styles.recipeDesc}>{recipieTime}</Text>
+          </View>
+        </View>
+      </ImageBackground>
+    </View>
+  );
+};
 
 export default RecipeCard;
