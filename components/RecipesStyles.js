@@ -4,7 +4,8 @@ const styles = StyleSheet.create({
   scrollableView: {
     alignItems: "center",
     width: "100%",
-    height: "200%",
+    height: "auto",
+    paddingBottom: 100,
   },
 });
 
