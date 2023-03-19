@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styles from "./RecipeCardStyles";
 import { ImageBackground, Text, View, Alert, Pressable } from "react-native";
 import DishContext from "../context/dishes/DishContext";
-
+import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons/faBookmark";
 import formatTime from "../utils/formatTime";
@@ -43,6 +43,10 @@ const RecipeCard = (props) => {
           paddingHorizontal: 20,
         }}
       >
+        <LinearGradient
+          colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.15)", "rgba(0,0,0,.4)"]}
+          style={styles.gradient}
+        />
         <Pressable style={styles.favorite} onPress={() => {}}>
           <FontAwesomeIcon
             icon={faBookmark}
