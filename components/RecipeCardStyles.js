@@ -31,6 +31,18 @@ const styles = StyleSheet.create({
     padding: 10,
     borderColor: "white",
   },
+  delete: {
+    position: "absolute",
+    top: 20,
+    right: 20,
+    backgroundColor: "#eee",
+    borderRadius: 10,
+    padding: 10,
+  },
+  deleteIcon: {
+    color: "rgb(252, 132, 30)",
+    backgroundColor: "#eee",
+  },
 
   favoriteIcon: {
     color: "white",
