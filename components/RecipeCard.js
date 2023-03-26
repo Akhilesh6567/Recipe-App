@@ -5,18 +5,48 @@ import DishContext from "../context/dishes/DishContext";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons/faBookmark";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import formatTime from "../utils/formatTime";
+import { Toast } from "toastify-react-native";
+import UserContext from "../context/auth/UserContext";
+
 const RecipeCard = (props) => {
-  const { addFavourite } = useContext(DishContext);
   const date = new Date(props.dish.time);
   const hours = date.getHours();
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
   const recipieTime = formatTime(hours, minutes, seconds);
-  const handleFavorite = (dish) => {
-    addFavourite(dish);
-    Alert.alert("Added to Favorites");
+
+  const { user, addFavorite, deleteFavorite } = useContext(UserContext);
+
+  const handleFavorite = (dishId) => {
+    try {
+      const isFavorite = user.favoriteRecipes.includes(dishId);
+      if (!isFavorite) {
+        addFavorite(dishId);
+        Toast.success("Recipe added to favorites");
+      } else {
+        Toast.warn("Recipe already in favorites");
+      }
+    }
+    catch (error) {
+      console.log(error);
+    }
   };
+
+  const handleDeleteFavorite = (dishId) => {
+
+    try {
+      deleteFavorite(dishId);
+      Toast.success("Recipe removed from favorites");
+    }
+    catch (error) {
+      console.log(error);
+    }
+
+  };
+
+
 
   return (
     <View
@@ -47,13 +77,37 @@ const RecipeCard = (props) => {
           colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.15)", "rgba(0,0,0,.4)"]}
           style={styles.gradient}
         />
-        <Pressable style={styles.favorite} onPress={() => {}}>
-          <FontAwesomeIcon
-            icon={faBookmark}
-            style={styles.favoriteIcon}
-            size={20}
-          />
-        </Pressable>
+
+        {!props.isDelete && (
+          <Pressable style={styles.favorite}
+            onTouchEnd={(e) => {
+              handleFavorite(props.dish.id)
+              e.stopPropagation();
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faBookmark}
+              style={styles.favoriteIcon}
+              size={20}
+            />
+          </Pressable>
+        )}
+
+        {props.isDelete && (
+          <Pressable
+            style={styles.delete}
+            onTouchEnd={(e) => {
+              handleDeleteFavorite(props.dish.id);
+              e.stopPropagation();
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faTrash}
+              style={styles.deleteIcon}
+              size={20}
+            />
+          </Pressable>
+        )}
 
         <View style={styles.recipeDetails}>
           <Text style={styles.recipeName}>{props.dish.name}</Text>
