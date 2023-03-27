@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Home";
-import Profile from "../screens/Profile";
+import Settings from "../screens/Settings";
 import Favourite from "../screens/Favourite";
 import { StyleSheet, View, Image, Text } from "react-native";
 
@@ -88,8 +88,8 @@ function Tabs() {
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={Profile}
+        name="Settings"
+        component={Settings}
         options={{
           headerStyle: {
             backgroundColor: "rgb(247, 124, 67)",
@@ -104,7 +104,7 @@ function Tabs() {
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center", justifyContent: "center" }}>
               <Image
-                source={require("../assets/icons/profile.png")}
+                source={require("../assets/icons/icons8-user-settings-32.png")}
                 resizeMode="contain"
                 style={{
                   width: 25,
@@ -118,7 +118,7 @@ function Tabs() {
                   fontSize: 12,
                 }}
               >
-                Profile
+                Settings
               </Text>
             </View>
           ),
