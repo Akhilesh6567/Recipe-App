@@ -17,6 +17,9 @@ import RecipeVideo from "./screens/RecipeVideo";
 import Container from "toastify-react-native";
 import Tabs from "./navigation/tabs";
 import PreparationSteps from "./screens/PreparationSteps";
+import Settings from "./screens/Settings";
+import About from "./screens/About";
+import Notes from "./screens/Notes";
 import {
   useFonts,
   Poppins_100Thin,
@@ -117,6 +120,13 @@ export default function App() {
                   options={{ headerShown: false }}
                 />
                 <Stack.Screen
+                  name="Settings"
+                  component={Settings}
+                  options={() => ({
+                    title: "Settings",
+                  })}
+                />
+                <Stack.Screen
                   name="Profile"
                   component={Profile}
                   options={() => ({
@@ -142,6 +152,20 @@ export default function App() {
                   component={AdminPanel}
                   options={() => ({
                     title: "Admin Panel",
+                  })}
+                />
+                <Stack.Screen
+                  name="About"
+                  component={About}
+                  options={() => ({
+                    title: "About",
+                  })}
+                />
+                <Stack.Screen
+                  name="Notes"
+                  component={Notes}
+                  options={() => ({
+                    title: "Notes",
                   })}
                 />
                 <Stack.Screen
@@ -181,7 +205,6 @@ export default function App() {
                     title: "Preparation Steps",
                   })}
                 />
-
               </Stack.Navigator>
             </NavigationContainer>
           </View>

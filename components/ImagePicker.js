@@ -10,7 +10,8 @@ import {
 import * as ImagePicker from "expo-image-picker";
 import myIcon from "../assets/icons/image-editor.png";
 import * as FileSystem from "expo-file-system";
-export default function ImagePickerExample() {
+export default function ImagePickerExample(props) {
+  const { isProfileImage } = props;
   const fileName = "myImage.jpg";
   const imagePath = `${FileSystem.documentDirectory}${fileName}`;
   const [image, setImage] = useState(null);
@@ -55,7 +56,10 @@ export default function ImagePickerExample() {
       ) : (
         <Image style={styles.image} source={require("../assets/avatar.jpg")} />
       )}
-      <TouchableHighlight onPress={pickImage} style={styles.icon_container}>
+      <TouchableHighlight
+        onPress={pickImage}
+        style={isProfileImage ? styles.settingsIcon : styles.icon_container}
+      >
         <Image style={styles.icon} source={myIcon} />
       </TouchableHighlight>
       {/* <Button title="Pick an image from camera roll" onPress={pickImage} /> */}
@@ -79,6 +83,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: -4,
     right: 2,
+  },
+  settingsIcon: {
+    position: "absolute",
+    bottom: -4,
+    right: 130,
   },
   icon: {
     width: 30,
