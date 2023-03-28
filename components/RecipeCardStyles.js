@@ -22,23 +22,35 @@ const styles = StyleSheet.create({
 
     elevation: 9,
   },
-  favorite: {
+  iconsGroup: {
     position: "absolute",
     top: 20,
     right: 20,
+    flexDirection: "column",    
+  },
+
+  favorite: {
     backgroundColor: "orange",
     borderRadius: 10,
     padding: 10,
     borderColor: "white",
   },
   delete: {
-    position: "absolute",
-    top: 20,
-    right: 20,
     backgroundColor: "#eee",
     borderRadius: 10,
     padding: 10,
   },
+  note: {
+    marginTop: 10,
+    backgroundColor: "#f5f5f5",
+    borderRadius: 10,
+    padding: 7,
+  },
+  noteIcon: {
+    width: 26,
+    height: 26,
+  },
+
   deleteIcon: {
     color: "rgb(252, 132, 30)",
     backgroundColor: "#eee",

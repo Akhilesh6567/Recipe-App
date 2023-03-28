@@ -19,12 +19,13 @@ export const loginAuth = async (userData) => {
       return false;
     }
     const { id, data } = userExists;
-    const { email, username, country, favoriteRecipes } = data;
+    const { email, username, country, favoriteRecipes, notes } = data;
 
     // console.log(Object.entries(data));
     return {
       id, email, username, country,
-      favoriteRecipes: favoriteRecipes || []
+      favoriteRecipes: favoriteRecipes || [],
+      notes: notes || [],
     };
   } catch (error) {
     alert(error);

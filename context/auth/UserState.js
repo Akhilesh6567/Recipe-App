@@ -10,6 +10,7 @@ function UserState(props) {
         id: "",
         country: "",
         favoriteRecipes: [],
+        notes: [],
     });
 
     // // adding favorite to user in firebase
@@ -40,8 +41,37 @@ function UserState(props) {
         setUser({ ...user, favoriteRecipes: user.favoriteRecipes.filter((id) => id !== dishId) });
     };
 
+    // adding note to user in firebase
+    const addNote = (newNote) => {
+        const usersUrl = `${baseUrl}/users/${user.id}.json`;
+
+        try {
+            axios.patch(usersUrl, { notes: [...user.notes, newNote] });
+        }
+        catch (error) {
+            console.log(error);
+        }
+        // adding note to user in state
+        setUser({ ...user, notes: [...user.notes, newNote] });
+
+    };
+
+    // deleting note from user in firebase
+    const deleteNote = (noteId) => {
+        const usersUrl = `${baseUrl}/users/${user.id}.json`;
+        try {
+            axios.patch(usersUrl, { notes: user.notes.filter((note) => note.id !== noteId) });
+        }
+        catch (error) {
+            console.log(error);
+        }
+
+        // deleting note from user in state
+        setUser({ ...user, notes: user.notes.filter((note) => note.id !== noteId) });
+    };
+
     return (
-        <UserContext.Provider value={{ user, setUser, addFavorite, deleteFavorite }}>
+        <UserContext.Provider value={{ user, setUser, addFavorite, deleteFavorite, addNote, deleteNote }}>
             {props.children}
         </UserContext.Provider>
     );
