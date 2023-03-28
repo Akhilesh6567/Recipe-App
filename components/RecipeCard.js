@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./RecipeCardStyles";
-import { ImageBackground, Text, View, Alert, Pressable } from "react-native";
+import { ImageBackground, Text, View, Pressable, Image } from "react-native";
 import DishContext from "../context/dishes/DishContext";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -78,36 +78,57 @@ const RecipeCard = (props) => {
           style={styles.gradient}
         />
 
-        {!props.isDelete && (
-          <Pressable style={styles.favorite}
-            onTouchEnd={(e) => {
-              handleFavorite(props.dish.id)
-              e.stopPropagation();
-            }}
-          >
-            <FontAwesomeIcon
-              icon={faBookmark}
-              style={styles.favoriteIcon}
-              size={20}
-            />
-          </Pressable>
-        )}
+        <View style={styles.iconsGroup}>
 
-        {props.isDelete && (
-          <Pressable
-            style={styles.delete}
-            onTouchEnd={(e) => {
-              handleDeleteFavorite(props.dish.id);
-              e.stopPropagation();
-            }}
-          >
-            <FontAwesomeIcon
-              icon={faTrash}
-              style={styles.deleteIcon}
-              size={20}
-            />
-          </Pressable>
-        )}
+          {!props.isDelete && (
+            <Pressable style={styles.favorite}
+              onTouchEnd={(e) => {
+                handleFavorite(props.dish.id)
+                e.stopPropagation();
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faBookmark}
+                style={styles.favoriteIcon}
+                size={20}
+              />
+            </Pressable>
+          )}
+
+          {props.isDelete && (
+            <Pressable
+              style={styles.delete}
+              onTouchEnd={(e) => {
+                handleDeleteFavorite(props.dish.id);
+                e.stopPropagation();
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faTrash}
+                style={styles.deleteIcon}
+                size={20}
+              />
+            </Pressable>
+          )}
+
+          {
+            !props.isDelete &&
+            <Pressable
+              style={styles.note}
+              onTouchEnd={(e) => {
+                props.setSelectedRecipe({
+                  id: props.dish.id,
+                  name: props.dish.name,
+                })
+                props.setIsPanelVisible(true);
+                e.stopPropagation();
+              }}
+            >
+              <Image source={require('../assets/icons/addnote3.png')} style={styles.noteIcon} />
+            </Pressable>
+          }
+        </View>
+
 
         <View style={styles.recipeDetails}>
           <Text style={styles.recipeName}>{props.dish.name}</Text>
