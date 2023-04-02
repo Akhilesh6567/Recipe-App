@@ -18,7 +18,7 @@ export default StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginVertical: 10,
+    marginVertical: 20,
 
   },
   text: {
@@ -27,7 +27,7 @@ export default StyleSheet.create({
     fontFamily: 'Poppins_400Regular',
     color: 'black',
     paddingHorizontal: 10,
-    marginBottom: 10,
+    marginTop: 20,
     borderWidth: 1.5,
     borderRadius: 10,
     borderColor: 'rgb(247, 124, 67)',

@@ -12,26 +12,32 @@ const SearchHeader = (props) => {
         return tag === props.tagValue ? true : false;
     }
 
+    const [focused, setFocused] = React.useState(false);
+
     return (
         <View>
-            <View style={styles.searchSection}>
+            <View
+                style={[styles.searchSection, focused ? { borderWidth: 1.5, borderColor: "#333", padding: 9 } : null]}
+            >
                 <FontAwesomeIcon
                     style={styles.searchIcon}
                     icon={faSearch}
                     size={20}
-                    color="#bbb"
+                    color={focused ? "#aaa" : "#bbb"}
                 />
                 <TextInput
                     style={styles.searchBox}
                     onChangeText={
                         text => {
                             props.setSearchValue(text),
-                                props.setIsLoading(true),
-                                props.setTagValue('')
+                                props.setIsLoading(true)
+                            text ? props.setTagValue('') : props.setTagValue('All')
                         }}
                     placeholder='Search for a recipe'
                     placeholderTextColor="#bbb"
-                    cursorColor={'#555'}
+                    cursorColor={'#777'}
+                    onFocus={() => setFocused(true)}
+                    onBlur={() => setFocused(false)}
                 >
                 </TextInput>
             </View>

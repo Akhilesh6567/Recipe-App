@@ -1,38 +1,43 @@
-import React, {useState, useContext } from 'react'
-import {Pressable, StyleSheet,Text, View} from 'react-native'
+import React, { useState, useContext } from 'react'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { TextInput } from 'react-native'
 import UserContext from '../context/auth/UserContext'
-import {resetPassword} from '../middlewares/resetPassword'
-const ChangePassword = () => {
+import { resetPassword } from '../middlewares/resetPassword'
+import isPasswordValid from '../utils/isPasswordValid'
+import { Toast } from 'toastify-react-native'
+const ChangePassword = ({ navigation }) => {
 
     const userContext = useContext(UserContext);
     const { user } = userContext;
-    
+
     const [Credential, setCredential] = useState({
         password: '',
         confirmPassword: '',
     })
 
-    const handleResetPassword = async() => {
+    const handleResetPassword = async () => {
 
         try {
-            if(Credential.password === '' || Credential.confirmPassword === ''){
+            if (Credential.password === '' || Credential.confirmPassword === '') {
                 alert('Please fill in all fields')
             }
-            else if(Credential.password !== Credential.confirmPassword){
+            else if (!isPasswordValid(Credential.password)) {
+                Toast.error('Password must be AlphaNumeric')
+            }
+            else if (Credential.password !== Credential.confirmPassword) {
                 alert('New password and confirm password do not match')
             }
-            else{
-               await resetPassword({id:user.id, password:Credential.password})
-
+            else {
+                const resetPasswordStatus = await resetPassword({ id: user.id, password: Credential.password })
+                if (resetPasswordStatus) {
+                    navigation.navigate('Profile')
+                    Toast.success('Password reset successful')
+                }
             }
-            
+
         } catch (error) {
-            alert(error);            
+            alert(error);
         }
-
-        
-
     }
 
 
@@ -48,7 +53,7 @@ const ChangePassword = () => {
                         placeholder="New Password"
                         placeholderTextColor="grey"
                         secureTextEntry={true}
-                        onChangeText={(password) => setCredential({...Credential, password})}
+                        onChangeText={(password) => setCredential({ ...Credential, password })}
                     />
                 </View>
 
@@ -59,28 +64,28 @@ const ChangePassword = () => {
                         placeholder="Confirm Password"
                         placeholderTextColor="grey"
                         secureTextEntry={true}
-                        onChangeText={(confirmPassword) => setCredential({...Credential, confirmPassword})}
+                        onChangeText={(confirmPassword) => setCredential({ ...Credential, confirmPassword })}
                     />
                 </View>
-                
-                <Pressable 
-                    style={({ pressed }) => [styles.passButton, pressed && { backgroundColor:'rgb(247, 124, 67)'}]}
+
+                <Pressable
+                    style={({ pressed }) => [styles.passButton, pressed && { backgroundColor: 'rgb(247, 124, 67)' }]}
                     onPress={handleResetPassword}
                     TouchableHighlight
-                    >
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                >
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Text style={styles.buttonText}>Reset Password </Text>
                         {/* <FontAwesomeIcon icon={faRightFromBracket} size={16} color="white" style={{marginLeft: 10}}/> */}
                     </View>
                 </Pressable>
 
 
-            </View>    
+            </View>
         </View>
     )
 }
 
-const styles = StyleSheet.create({  
+const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '100%',
@@ -113,13 +118,13 @@ const styles = StyleSheet.create({
         marginTop: 5,
         fontFamily: 'Poppins_400Regular',
     },
-    
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    fontFamily: 'Poppins_500Medium',
-    marginTop:2
-  },
+
+    buttonText: {
+        color: 'white',
+        fontSize: 16,
+        fontFamily: 'Poppins_500Medium',
+        marginTop: 2
+    },
     passButton: {
         width: '90%',
         height: 45,

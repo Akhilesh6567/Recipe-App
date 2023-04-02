@@ -10,7 +10,7 @@ function Tabs() {
   return (
     <Tab.Navigator
       screenOptions={{
-        keyboardHidesTabBar: true,
+        tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
         tabBarStyle: {
           position: "absolute",

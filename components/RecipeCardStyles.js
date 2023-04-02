@@ -12,21 +12,23 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     overflow: "hidden",
     marginBottom: 50,
+    backgroundColor: "white",
+
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 5,
     },
-    shadowOpacity: 0.32,
-    shadowRadius: 5.46,
+    shadowOpacity: 0.58,
+    shadowRadius: 10.00,
 
-    elevation: 9,
+    elevation: 12,
   },
   iconsGroup: {
     position: "absolute",
     top: 20,
     right: 20,
-    flexDirection: "column",    
+    flexDirection: "column",
   },
 
   favorite: {

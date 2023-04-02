@@ -36,11 +36,11 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 16,
-    fontWeight: "900",
+    fontFamily: "Poppins_600SemiBold",
   },
   helpingText: {
     fontSize: 12,
-    fontWeight: "100",
+    fontFamily: "Poppins_300Light",
   },
 });
 

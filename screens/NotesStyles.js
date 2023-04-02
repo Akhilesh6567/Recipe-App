@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
-
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
@@ -21,6 +20,14 @@ const styles = StyleSheet.create({
         elevation: 5,
 
     },
+
+    noteDeleteView: {
+        paddingHorizontal: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+
     noteRecipeName: {
         width: '100%',
         fontFamily: 'Poppins_500Medium',

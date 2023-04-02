@@ -98,6 +98,7 @@ export default function App() {
             <NavigationContainer onReady={onLayoutRootView}>
               <Stack.Navigator
                 screenOptions={{
+                  statusBarColor: "rgb(247, 124, 67)",
                   headerStyle: { backgroundColor: "rgb(247, 124, 67)" },
                   headerTintColor: "white",
                   contentStyle: { backgroundColor: "#eee" },
