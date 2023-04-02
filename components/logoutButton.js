@@ -18,20 +18,20 @@ const LogoutButton = () => {
 
 const styles = StyleSheet.create({
   button: {
+    width: 120,
     padding: 10,
     backgroundColor: "rgb(247, 124, 67)",
-    borderRadius: 10,
+    borderRadius: 6,
     alignItems: "center",
-    marginVertical: 20,
-    width: 100,
+    marginVertical: 30,
     marginLeft: "auto",
     marginRight: "auto",
     color: "#fff",
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: "bold",
     color: "#fff",
+    fontFamily: "Poppins_600SemiBold",
   },
 });
 

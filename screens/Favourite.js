@@ -16,19 +16,25 @@ const Favourite = (props) => {
     <ScrollView
       contentContainerStyle={styles.scrollableView}
     >
-      {user.favoriteRecipes.map((recipe) => {
-        const dish = dishes.find((dish) => dish.id === recipe);
+      {
+        user.favoriteRecipes.length === 0 ?
+          <View style={styles.noFav}>
+            <Text style={styles.noFavText}>No Favourite Recipes</Text>
+          </View>
+          :
+          user.favoriteRecipes.map((recipe) => {
+            const dish = dishes.find((dish) => dish.id === recipe);
 
-        return (
-          dish &&
-          <RecipeCard
-            key={uuid.v4()}
-            dish={dish}
-            navigation={props.navigation}
-            isDelete={true}
-          />
-        );
-      })}
+            return (
+              dish &&
+              <RecipeCard
+                key={uuid.v4()}
+                dish={dish}
+                navigation={props.navigation}
+                isDelete={true}
+              />
+            );
+          })}
     </ScrollView>
   )
 }

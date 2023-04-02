@@ -5,8 +5,11 @@ import ImagePicker from "../components/ImagePicker";
 import SettingsItem from "../components/settingsItem";
 import LogoutButton from "../components/logoutButton";
 import Hr from "../components/Hr";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
+import { faNoteSticky } from "@fortawesome/free-solid-svg-icons/faNoteSticky";
+
 const Settings = ({ navigation }) => {
-  // alert(JSON.stringify(navigation));
 
   const userContext = useContext(UserContext);
   const { user, setUser } = userContext;
@@ -20,14 +23,7 @@ const Settings = ({ navigation }) => {
       <SettingsItem
         heading="User Profile"
         settingIcon={
-          <Image
-            source={require("../assets/icons/profile.png")}
-            resizeMode="contain"
-            style={{
-              width: 50,
-              height: 30,
-            }}
-          />
+          <FontAwesomeIcon icon={faUser} size={30} style={{ marginLeft: 15 }} />
         }
         helpingText="Welcome to your user profile!"
         whereToNavigate={() => {
@@ -42,8 +38,9 @@ const Settings = ({ navigation }) => {
             source={require("../assets/icons/icons8-about-50.png")}
             resizeMode="contain"
             style={{
-              width: 50,
+              width: 30,
               height: 30,
+              marginLeft: 15,
             }}
           />
         }
@@ -56,25 +53,16 @@ const Settings = ({ navigation }) => {
       <SettingsItem
         heading="Notes"
         settingIcon={
-          <Image
-            source={require("../assets/icons/icons8-notepad-50.png")}
-            resizeMode="contain"
-            style={{
-              width: 50,
-              height: 30,
-            }}
-          />
+          <FontAwesomeIcon icon={faNoteSticky} size={30} style={{ marginLeft: 15 }} />
         }
         helpingText="Take note of what matters with ease."
         whereToNavigate={() => {
           navigation.navigate("Notes");
         }}
       />
-      <LogoutButton />
-      {/* <Hr />
-      <SettingsItem />
       <Hr />
-      <SettingsItem /> */}
+      <LogoutButton />
+
     </View>
   );
 };
@@ -84,10 +72,10 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   userName: {
-    fontWeight: "900",
     textAlign: "center",
     marginVertical: 20,
     fontSize: 20,
+    fontFamily: "Poppins_500Medium"
   },
 });
 

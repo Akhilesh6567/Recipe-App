@@ -27,14 +27,6 @@ const RecipeDetail = (props) => {
     dishPreparationSteps,
   } = props.route.params;
 
-  const toTimeString = (time) => {
-    const date = new Date(time);
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-
-    return `${hours}h ${minutes}m ${seconds}s`;
-  };
 
   return (
     <ScrollView>
@@ -80,9 +72,6 @@ const RecipeDetail = (props) => {
         <Text
           style={styles.heading}
         >{`Ingredients(${dishIngredients.length})`}</Text>
-        <Text style={styles.timeHeading}>
-          {dishTime ? toTimeString(dishTime) : "N/A"}
-        </Text>
       </View>
 
       <View style={styles.ingredientCards}>

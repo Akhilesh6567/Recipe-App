@@ -10,7 +10,6 @@ export const resetPassword = async ({id,password}) => {
             return false;
         }
         await axios.patch(usersUrl, {password});
-        alert("Password changed successfully");
         return true;
     }
     catch (error) {
